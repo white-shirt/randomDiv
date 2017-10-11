@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="utf-8">
+	<title>test</title>
+	<style>
+		.content{
+			width: 1000px;
+			height: 800px;
+			background: #ccc;
+			position: absolute;
+			top:50%;
+			left:50%;
+			margin-top: -400px;
+			margin-left: -500px;
+		}
+		.tip{
+			width: 150px;
+			height: 150px;
+			font-size: 10px;
+			background: green;
+			text-align: center;
+			line-height: 150px;
+			position: absolute;
+			left: 500px;
+			top: 300px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="content">
+		<div class="tip">我是green</div>
+	</div>
+<script>
+	//颜色数组
+	var color = ["green","yellow","red","pink","blue","purple","grey"];
+	var content = document.getElementsByClassName('content')[0];
+	var Tip = document.getElementsByClassName('tip')[0];
+	for (var i=0;i<15;i++) {
+	//1.获取事件源
+	var newTip = Tip.cloneNode(true);
+	var topValue = parseInt(Math.random() * 600);
+	var leftValue = parseInt(Math.random() * 800);
+	var newColorIndex = parseInt(Math.random() * 7);
+	Tip.style.top = topValue + "px";
+	Tip.style.left = leftValue + "px";
+	Tip.innerText = "我是" + color[newColorIndex];
+	Tip.style.background = color[newColorIndex];
+	newTip.style.top = topValue + "px";
+	newTip.style.left = leftValue + "px";
+	newTip.innerText = "我是" + color[newColorIndex];
+	newTip.style.background = color[newColorIndex];
+	content.appendChild(newTip);
+	newTip.onclick = fn;
+	}
+	//2.添加点击事件
+	var index = 1;
+	function fn() {
+		this.style.zIndex = index;
+		index++;
+	}
+
+</script>
+
+</body>
+</html>
